@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Chao turns 40 · Hong Kong · Shenzhen · Taipei</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%82%3C/text%3E%3C/svg%3E" />
+  <meta name="description" content="A 40th birthday trip across Hong Kong, Shenzhen and Taipei — 16 friends, 5 countries, one itinerary." />
+  <meta property="og:title" content="Chao turns 40 — HK · Shenzhen · Taipei" />
+  <meta property="og:description" content="The itinerary, the crew, the map. Oct 2026." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top">
+      <span class="nav-dot"></span>
+      <span>Chao&nbsp;<b>40</b></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#crew">Crew</a>
+      <a href="#map">Map</a>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#stays">Stays</a>
+      <a href="#flights">Flights</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="hero-kicker" id="heroKicker">40th birthday · Oct 2026</div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-tagline" id="heroTagline"></p>
+        <p class="hero-blurb" id="heroBlurb"></p>
+        <div class="countdown" id="countdown" aria-label="Countdown to the trip"></div>
+        <div class="hero-chips" id="heroChips"></div>
+      </div>
+    </section>
+
+    <section class="section" id="crew">
+      <div class="section-head">
+        <h2>The crew</h2>
+        <p class="muted" id="crewSub">Sixteen of us, five countries, one group chat that never sleeps.</p>
+      </div>
+      <div class="stories" id="stories"></div>
+      <div class="crew-grid" id="crewGrid"></div>
+    </section>
+
+    <section class="section" id="map">
+      <div class="section-head">
+        <h2>Everyone flies in</h2>
+        <p class="muted">Four corners of the world converge on Hong Kong — then we ride north to Shenzhen and hop east to Taipei.</p>
+      </div>
+      <div class="map-wrap">
+        <div id="leafletMap"></div>
+        <div class="map-legend">
+          <span><i class="dash"></i> Flying in</span>
+          <span><i class="solid"></i> Our route</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="itinerary">
+      <div class="section-head">
+        <h2>The plan, day by day</h2>
+        <p class="muted">Tap any day to open the full schedule. Plans marked TBC are still up for grabs.</p>
+      </div>
+      <div class="feed" id="feed"></div>
+    </section>
+
+    <section class="section" id="stays">
+      <div class="section-head"><h2>Where we're staying</h2></div>
+      <div class="cards" id="staysGrid"></div>
+    </section>
+
+    <section class="section" id="flights">
+      <div class="section-head">
+        <h2>Flights</h2>
+        <p class="muted" id="flightRef"></p>
+      </div>
+      <div class="flights" id="flightsList"></div>
+    </section>
+
+    <section class="section" id="notes">
+      <div class="section-head"><h2>Shared notes &amp; to-dos</h2></div>
+      <ul class="notes" id="notesList"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made for the big 40 · <span id="footRange"></span></p>
+    <p class="muted small">Edit <code>data/itinerary.json</code> to update this page.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
