@@ -24,7 +24,7 @@ function renderHero(meta) {
   $("#heroKicker").textContent = `40th birthday · ${meta.tripWindow || "Oct–Nov 2026"}`;
   $("#heroTitle").innerHTML = `Chao turns <span class="accent">40</span>`;
   $("#heroTagline").textContent = meta.tagline;
-  $("#heroInvite").textContent = meta.invite || meta.blurb;
+  $("#heroInvite").innerHTML = (meta.invite || meta.blurb).replace(/\n\n/g, "<br><br>");
   if (meta.playful) $("#heroPlayful").textContent = meta.playful;
   $("#footRange").textContent = meta.tripWindow || meta.dateRange;
   $("#flightRef").innerHTML = meta.flightRef +
