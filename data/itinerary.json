@@ -2,8 +2,8 @@
   "meta": {
     "title": "Chao turns 40",
     "tagline": "Hong Kong · Shenzhen · Taipei",
-    "blurb": "A birthday trip wrapped around Taipei Pride. 17 of us, 6 countries, one ridiculous reason to fly across the world.",
-    "invite": "I'm turning 40, and the best gift is having you there. This trip is part reunion, part food crawl, part city-hopping adventure — Hong Kong, Shenzhen, and Taipei with some of my favourite people.",
+    "blurb": "Part reunion, part food coma, part shameless excuse to fly Business. 17 friends, 6 countries, one birthday that's going to be very hard to top.",
+    "invite": "I'm turning 40 and I want to do it right, with the people who matter most, in the cities I love, eating everything in sight. Hong Kong, Shenzhen, Taipei. Nine days. Come join the chaos.",
     "playful": "17 friends · 3 cities · 1 very full camera roll",
     "dateRange": "Fri 23 Oct → Sun 1 Nov 2026",
     "tripWindow": "Oct–Nov 2026",
@@ -33,9 +33,9 @@
     { "label": "Taiwan", "country": "Taiwan", "flag": "🇹🇼", "lat": 22.6273, "lng": 120.3014, "color": "#6C5CE7", "to": "Taipei" }
   ],
   "destinations": [
-    { "name": "Hong Kong", "flag": "🇭🇰", "code": "HKG", "mood": "Arrival energy", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "why": "Arrival energy, skyline views, dim sum, late-night catchups, and the feeling of everyone finally landing in the same place.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
-    { "name": "Shenzhen", "flag": "🇨🇳", "code": "SZX", "mood": "Explore + surprise", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "why": "A future-facing city stop: design, tech, food, border-crossing adventure, and a slightly unexpected chapter of the trip.", "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70" },
-    { "name": "Taipei", "flag": "🇹🇼", "code": "TPE", "mood": "Birthday warmth", "lat": 25.0330, "lng": 121.5654, "order": 3, "blurb": "Night markets, Jiufen, and Taipei Pride to finish.", "why": "Night markets, warm hospitality, slower wandering, birthday moments, and a final stretch full of shared memories.", "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70" }
+    { "name": "Hong Kong", "flag": "🇭🇰", "code": "HKG", "mood": "Big Birthday Celebration", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "why": "The city that describes Chao best: Chinese roots, western upbringing, a love of both worlds. Hong Kong is where it all makes sense, the skyline, the dim sum, the late-night streets, and the feeling of everyone finally landing in the same place to celebrate properly.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
+    { "name": "Shenzhen", "flag": "🇨🇳", "code": "SZX", "mood": "Tech + Gadget Heaven", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "why": "Chao's ecosystem in city form, packed with nerds, engineers, and innovators who speak the same language. A massive gadget fan's paradise of electronics markets, cutting-edge design, and border-crossing adventure that surprises everyone every single time.", "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70" },
+    { "name": "Taipei", "flag": "🇹🇼", "code": "TPE", "mood": "Home Turf Vibes", "lat": 25.0330, "lng": 121.5654, "order": 3, "blurb": "Night markets, Jiufen, and Taipei Pride to finish.", "why": "The city closest to where Chao was born, and it shows in every bowl and back alley. Slower, warmer, built entirely around incredible food and effortless chill. The kind of place where you wander without a plan and stumble into the best meal of the trip.", "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70" }
   ],
   "route": [
     { "from": "Hong Kong", "to": "Shenzhen", "mode": "rail" },
@@ -55,12 +55,12 @@
     { "name": "Airbnb — Home in Meihua Village", "city": "Taipei", "flag": "🇹🇼", "dates": "27 Oct – 1 Nov", "status": "booked", "detail": "Host: WuWu · Meihua Village, Taipei · 5-min walk to Shandao Temple MRT · keypad self check-in · checkout Sun 1 Nov 11:00", "locked": [ { "label": "Full address", "secret": "airbnb_address" }, { "label": "Confirmation code", "secret": "airbnb_confirmation" } ] }
   ],
   "flights": [
-    { "code": "TBC", "date": "Thu 22 Oct", "from": "London", "to": "Munich (MUC)", "note": "To book — connects to CX300", "status": "tbc" },
+    { "code": "TBC", "date": "Thu 22 Oct", "from": "London", "to": "Munich (MUC)", "note": "To book, connects to CX300", "status": "tbc" },
     { "code": "CX300", "date": "Thu 22 Oct", "from": "Munich (MUC) 1:50pm", "to": "Hong Kong (HKG) 6:50am +1", "note": "Overnight to Hong Kong · Business", "status": "booked" },
     { "code": "CX450", "date": "Tue 27 Oct", "from": "Hong Kong (HKG) 10:00am", "to": "Taipei (TPE) 11:50am", "note": "Business", "status": "booked" },
     { "code": "CX531", "date": "Sun 1 Nov", "from": "Taipei (TPE) 8:15pm", "to": "Hong Kong (HKG) 10:20pm", "note": "Business", "status": "booked" },
     { "code": "CX301", "date": "Mon 2 Nov", "from": "Hong Kong (HKG) 1:10am", "to": "Munich (MUC) 7:50am", "note": "Red-eye home · Business", "status": "booked" },
-    { "code": "TBC", "date": "Mon 2 Nov", "from": "Munich (MUC)", "to": "London", "note": "To book — same day", "status": "tbc" }
+    { "code": "TBC", "date": "Mon 2 Nov", "from": "Munich (MUC)", "to": "London", "note": "To book, same day", "status": "tbc" }
   ],
   "days": [
     {
@@ -69,9 +69,9 @@
       "summary": "Wheels up. The long haul east begins.",
       "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=70",
       "plans": [
-        { "time": "Midday", "plan": "✈️ TBC — Book London → Munich (MUC), allow time to connect to CX300." },
-        { "time": "Afternoon", "plan": "✈️ CX300 — Depart Munich 1:50pm → overnight flight to Hong Kong (Business)." },
-        { "time": "Evening", "plan": "🛋 In the air — arrive Hong Kong 6:50am the next morning." }
+        { "time": "Midday", "plan": "✈️ TBC. Book London → Munich (MUC), allow time to connect to CX300." },
+        { "time": "Afternoon", "plan": "✈️ CX300: Depart Munich 1:50pm → overnight flight to Hong Kong (Business)." },
+        { "time": "Evening", "plan": "🛋 In the air. Arriving Hong Kong 6:50am the next morning." }
       ]
     },
     {
@@ -81,18 +81,19 @@
       "hotel": "Renaissance Hong Kong Harbour View Hotel",
       "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70",
       "plans": [
-        { "time": "Morning", "plan": "✈️ CX300 — Arrive Hong Kong 6:50am from Munich (Business)." },
+        { "time": "Morning", "plan": "✈️ CX300: Arrive Hong Kong 6:50am from Munich (Business)." },
         { "time": "Afternoon", "plan": "Settle in · explore Wan Chai / harbour front." },
-        { "time": "Evening", "plan": "6:00pm — Karl & Trev arrive · 8:00pm — Group dinner (booked)." }
+        { "time": "Evening", "plan": "6:00pm: Karl & Trev arrive · 8:00pm: Group dinner (booked)." }
       ]
     },
     {
       "date": "Sat 24 Oct", "city": "Hong Kong", "flag": "🎂", "kicker": "Birthday day",
-      "title": "The big 40 — Hong Kong",
+      "title": "The big 40, Hong Kong",
       "summary": "The actual reason we're all here. Make it loud.",
       "hotel": "Renaissance Hong Kong Harbour View Hotel",
       "highlight": true,
-      "image": "https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=900&q=70",
+      "special": "birthday",
+      "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70",
       "plans": [
         { "time": "Morning", "plan": "Slow start / dim sum." },
         { "time": "Afternoon", "plan": "🎉 Birthday activity (TBC)." },
@@ -102,7 +103,7 @@
     {
       "date": "Sun 25 Oct", "city": "Shenzhen", "flag": "🚄", "kicker": "Travel",
       "title": "Hong Kong → Shenzhen",
-      "summary": "High-speed rail north for an overnight.",
+      "summary": "High-speed rail, border crossing, one night in the future.",
       "hotel": "Futian Shangri-La Shenzhen",
       "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70",
       "plans": [
@@ -114,7 +115,7 @@
     {
       "date": "Mon 26 Oct", "city": "Hong Kong", "flag": "🚄", "kicker": "Travel",
       "title": "Shenzhen → Hong Kong",
-      "summary": "Back across the border.",
+      "summary": "Bags repacked, border crossed, Hong Kong one last time.",
       "hotel": "Hong Kong (TBC)",
       "image": "https://images.unsplash.com/photo-1518599807935-37015b9cefcb?w=900&q=70",
       "plans": [
@@ -126,73 +127,74 @@
     {
       "date": "Tue 27 Oct", "city": "Taipei", "flag": "✈️", "kicker": "Travel",
       "title": "Hong Kong → Taipei",
-      "summary": "Final destination unlocked.",
+      "summary": "Wheels down in Taipei. Last city. Best city?",
       "hotel": "Airbnb — Home in Meihua Village",
       "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70",
       "plans": [
-        { "time": "Morning", "plan": "✈️ CX450 — Hong Kong 10:00am → Taipei 11:50am (Business)." },
+        { "time": "Morning", "plan": "✈️ CX450: Hong Kong 10:00am → Taipei 11:50am (Business)." },
         { "time": "Afternoon", "plan": "Check in to the Meihua Village Airbnb (keypad self check-in)." },
         { "time": "Evening", "plan": "First night in Taipei · plans TBC." }
       ]
     },
     {
       "date": "Wed 28 Oct", "city": "Taipei", "flag": "🌆", "kicker": "Explore",
-      "title": "Taipei — open day",
-      "summary": "Sightseeing, eating, wandering.",
+      "title": "Taipei: open day",
+      "summary": "No agenda. Just Taipei, your feet, and an embarrassing amount of food.",
       "hotel": "Airbnb — Home in Meihua Village",
       "image": "https://images.unsplash.com/photo-1552993873-9be5e2a6e3b6?w=900&q=70",
       "plans": [
-        { "time": "Morning", "plan": "Open — add plans." },
-        { "time": "Afternoon", "plan": "Open — add plans." },
-        { "time": "Evening", "plan": "Open — add plans." }
+        { "time": "Morning", "plan": "Open. Add plans." },
+        { "time": "Afternoon", "plan": "Open. Add plans." },
+        { "time": "Evening", "plan": "Open. Add plans." }
       ]
     },
     {
       "date": "Thu 29 Oct", "city": "Taipei", "flag": "🏮", "kicker": "Day trip",
-      "title": "Jiufen — the Ghibli town",
+      "title": "Jiufen: the Ghibli town",
       "summary": "Lantern alleys, tea houses, golden hour.",
       "hotel": "Airbnb — Home in Meihua Village",
-      "image": "https://images.unsplash.com/photo-1601063476271-a159c71ab0b3?w=900&q=70",
+      "special": "ghibli",
+      "image": "assets/jiufen-bg.jpg",
       "plans": [
         { "time": "Morning", "plan": "☀️ Early start → Jiufen Old Street. Walk to Shandao Temple MRT → Taipei Main Station → train (TRA) to Ruifang, then bus/taxi up. Arrive before the crowds; tea + breakfast snacks." },
-        { "time": "Afternoon", "plan": "🏮 Explore Jiufen: A-Mei Tea House viewpoint, lantern alleys, shops. Street-food crawl — taro balls, peanut ice-cream roll, fish balls, herbal tea. Optional: Jinguashi Gold Museum / Golden Waterfall." },
+        { "time": "Afternoon", "plan": "🏮 Explore Jiufen: A-Mei Tea House viewpoint, lantern alleys, shops. Street-food crawl: taro balls, peanut ice-cream roll, fish balls, herbal tea. Optional: Jinguashi Gold Museum / Golden Waterfall." },
         { "time": "Evening", "plan": "🌇 Stay for golden hour + lanterns, then bus/taxi → Ruifang → train back. Dinner near Dongmen / Yongkang St or Zhongxiao Fuxing." }
       ]
     },
     {
       "date": "Fri 30 Oct", "city": "Taipei", "flag": "🌆", "kicker": "Explore",
-      "title": "Taipei — open day",
-      "summary": "Last full free day before Pride.",
+      "title": "Taipei: open day",
+      "summary": "Last free day before the main event. Make it count.",
       "hotel": "Airbnb — Home in Meihua Village",
       "image": "https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=900&q=70",
       "plans": [
-        { "time": "Morning", "plan": "Open — add plans." },
-        { "time": "Afternoon", "plan": "Open — add plans." },
-        { "time": "Evening", "plan": "Open — add plans." }
+        { "time": "Morning", "plan": "Open. Add plans." },
+        { "time": "Afternoon", "plan": "Open. Add plans." },
+        { "time": "Evening", "plan": "Open. Add plans." }
       ]
     },
     {
       "date": "Sat 31 Oct", "city": "Taipei", "flag": "🏳️‍🌈", "kicker": "Taipei Pride",
       "title": "Taipei Pride",
-      "summary": "Asia's biggest Pride — the grand finale.",
+      "summary": "Asia's biggest Pride. The grand finale.",
       "hotel": "Airbnb — Home in Meihua Village",
       "highlight": true,
       "image": "https://images.unsplash.com/photo-1561612217-e5147162fd31?w=900&q=70",
       "plans": [
-        { "time": "Morning", "plan": "Rest up / brunch — add plans." },
-        { "time": "Afternoon", "plan": "🏳️‍🌈 Taipei Pride — parade + celebrations." },
+        { "time": "Morning", "plan": "Rest up, brunch. Add plans." },
+        { "time": "Afternoon", "plan": "🏳️‍🌈 Taipei Pride: parade + celebrations." },
         { "time": "Evening", "plan": "Out out. Add plans." }
       ]
     },
     {
       "date": "Sun 1 Nov", "city": "Taipei → Hong Kong", "flag": "👋", "kicker": "Departure",
       "title": "Last day in Taipei",
-      "summary": "Checkout, final bites, evening flight.",
+      "summary": "Bags by the door. One last bowl of something good. Then the airport.",
       "image": "https://images.unsplash.com/photo-1508248467877-aec1b08de376?w=900&q=70",
       "plans": [
         { "time": "Morning", "plan": "🧳 Check out of the Airbnb by 11:00." },
         { "time": "Afternoon", "plan": "Head to Taoyuan Airport (TPE) · last Taipei shopping / bites." },
-        { "time": "Evening", "plan": "✈️ CX531 — Taipei 8:15pm → Hong Kong 10:20pm · overnight in HK." }
+        { "time": "Evening", "plan": "✈️ CX531: Taipei 8:15pm → Hong Kong 10:20pm · overnight in HK." }
       ]
     },
     {
@@ -201,8 +203,8 @@
       "summary": "Red-eye home. Until the next one.",
       "image": "https://images.unsplash.com/photo-1610642372651-fe6e7bc60ba0?w=900&q=70",
       "plans": [
-        { "time": "Late night", "plan": "✈️ CX301 — Hong Kong 1:10am → Munich 7:50am (Business)." },
-        { "time": "Morning", "plan": "✈️ TBC — Book Munich → London (same day, after 7:50am)." }
+        { "time": "Late night", "plan": "✈️ CX301: Hong Kong 1:10am → Munich 7:50am (Business)." },
+        { "time": "Morning", "plan": "✈️ TBC. Book Munich → London (same day, after 7:50am)." }
       ]
     }
   ],
@@ -216,10 +218,15 @@
     { "text": "Get lost at least once", "emoji": "🧭" },
     { "text": "Try a local breakfast in every city", "emoji": "🍳" },
     { "text": "Capture one perfect skyline photo", "emoji": "🌆" },
-    { "text": "Leave room for a surprise", "emoji": "🎁" }
+    { "text": "Leave room for a surprise", "emoji": "🎁" },
+    { "text": "Get Chao absolutely drunk", "emoji": "🥴" },
+    { "text": "Dance the night away", "emoji": "🕺" },
+    { "text": "Eat fried chicken in every city", "emoji": "🍗" },
+    { "text": "Find the best coffee", "emoji": "☕" },
+    { "text": "Uncover TikTok's hidden gems in every city", "emoji": "📱" }
   ],
   "notes": [
-    "Drop restaurant ideas, things to book, and must-dos here so we can all add to them.",
+    "The living list: restaurant recs, things we haven't figured out, anything worth adding. Chuck it in.",
     "⚠️ Book London → Munich and Munich → London connecting flights.",
     "⚠️ Book Hong Kong stay for the night of 26 Oct."
   ]

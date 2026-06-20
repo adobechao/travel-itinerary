@@ -85,7 +85,20 @@ function renderDays(days) {
     const card = el("article", "day" + (d.highlight ? " is-highlight" : ""));
     const media = el("div", "day-media");
     if (d.image) {
-      media.style.backgroundImage = `url("${d.image}")`;
+      let bgImage = `url("${d.image}")`;
+      if (d.special === "birthday") {
+        bgImage =
+          `radial-gradient(circle at 78% 22%, rgba(255,215,0,0.62) 0%, transparent 50%),` +
+          `radial-gradient(circle at 18% 80%, rgba(255,94,138,0.52) 0%, transparent 42%),` +
+          `radial-gradient(circle at 52% 55%, rgba(124,58,237,0.32) 0%, transparent 46%),` +
+          bgImage;
+      } else if (d.special === "ghibli") {
+        bgImage =
+          `radial-gradient(circle at 50% 28%, rgba(255,168,50,0.68) 0%, transparent 55%),` +
+          `radial-gradient(circle at 78% 72%, rgba(190,65,20,0.48) 0%, transparent 42%),` +
+          bgImage;
+      }
+      media.style.backgroundImage = bgImage;
       const probe = new Image();
       probe.onerror = () => { media.style.backgroundImage = "none"; };
       probe.src = d.image;
@@ -119,7 +132,6 @@ function renderDays(days) {
     body.appendChild(plansWrap);
 
     toggle.addEventListener("click", () => card.classList.toggle("open"));
-    if (i < 2 || d.highlight) card.classList.add("open");
 
     card.appendChild(body);
     feed.appendChild(card);
@@ -332,8 +344,11 @@ async function renderHeroMap(data) {
     const H = host.clientHeight || 520;
     const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid slice");
 
-    const projection = d3.geoNaturalEarth1().rotate([-150, -8]);
-    projection.fitExtent([[-W * 0.06, -H * 0.18], [W * 1.06, H * 1.22]], { type: "Sphere" });
+    const isMobile = W < 620;
+    const projection = d3.geoNaturalEarth1().rotate([-114, -22]);
+    projection
+      .scale(isMobile ? Math.min(W, H) * 0.22 : Math.min(W, H) * 0.29)
+      .translate([isMobile ? W * 0.54 : W * 0.78, isMobile ? H * 0.70 : H * 0.67]);
     const path = d3.geoPath(projection);
 
     svg.append("path").datum({ type: "Sphere" }).attr("class", "hm-grat").attr("d", path);
@@ -352,15 +367,17 @@ async function renderHeroMap(data) {
       const dest = o.to ? data.destinations.find((d) => d.name === o.to) || HK : HK;
       const a = [o.lng, o.lat], b = [dest.lng, dest.lat];
       const arc = svg.append("path").datum(gc(a, b)).attr("class", "hm-arc")
-        .attr("stroke", o.color).attr("stroke-width", 1.6).attr("d", path);
+        .attr("stroke", o.color).attr("stroke-width", 2.4).attr("d", path);
       const node = arc.node();
       const len = node.getTotalLength();
       arc.attr("stroke-dasharray", len).attr("stroke-dashoffset", len);
       const plane = svg.append("path").attr("class", "hm-plane").attr("d", PLANE).attr("opacity", 0);
-      // origin flag
+      // origin flag — only render if on-screen
       const p0 = projection(a);
-      if (p0) svg.append("text").attr("x", p0[0]).attr("y", p0[1] + 4).attr("text-anchor", "middle")
-        .attr("font-size", 13).text(o.flag);
+      if (p0 && p0[0] >= 0 && p0[0] <= W && p0[1] >= -10 && p0[1] <= H + 10) {
+        svg.append("text").attr("x", p0[0]).attr("y", p0[1] + 4).attr("text-anchor", "middle")
+          .attr("font-size", 13).text(o.flag);
+      }
       flights.push({ node, len, plane, delay: i * 900, dur: 4200, gap: 2600 });
     });
 
@@ -391,7 +408,7 @@ async function renderHeroMap(data) {
           const at = f.node.getPointAtLength(p * f.len);
           const ahead = f.node.getPointAtLength(Math.min(f.len, p * f.len + 1));
           const ang = (Math.atan2(ahead.y - at.y, ahead.x - at.x) * 180) / Math.PI + 90;
-          f.plane.attr("opacity", 1).attr("transform", `translate(${at.x},${at.y}) rotate(${ang}) scale(0.95)`);
+          f.plane.attr("opacity", 1).attr("transform", `translate(${at.x},${at.y}) rotate(${ang}) scale(1.15)`);
           f.node.setAttribute("stroke-dashoffset", f.len * (1 - p));
         } else {
           f.plane.attr("opacity", 0);

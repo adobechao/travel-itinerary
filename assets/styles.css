@@ -95,11 +95,11 @@ code { background: var(--bg-2); padding: 2px 7px; border-radius: 6px; font-size:
 .hero-map svg { width: 100%; height: 100%; display: block; }
 .hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(95deg, rgba(16,24,48,0.92) 0%, rgba(16,24,48,0.72) 38%, rgba(16,24,48,0.18) 70%, rgba(16,24,48,0.05) 100%),
-    linear-gradient(0deg, rgba(16,24,48,0.55), transparent 45%); }
+    linear-gradient(95deg, rgba(16,24,48,0.82) 0%, rgba(16,24,48,0.55) 28%, rgba(16,24,48,0.10) 52%, rgba(16,24,48,0.02) 100%),
+    linear-gradient(0deg, rgba(16,24,48,0.42), transparent 38%); }
 .hero-inner { position: relative; z-index: 2; max-width: 640px; min-width: 0; width: 100%; }
 /* hero map layers */
-.hm-land { fill: rgba(150,180,230,0.10); stroke: rgba(160,190,240,0.22); stroke-width: 0.4; }
+.hm-land { fill: rgba(150,180,230,0.17); stroke: rgba(160,190,240,0.32); stroke-width: 0.5; }
 .hm-grat { fill: none; stroke: rgba(180,205,255,0.06); stroke-width: 0.4; }
 .hm-arc { fill: none; stroke-linecap: round; opacity: 0.85; }
 .hm-plane { fill: #ffffff; filter: drop-shadow(0 0 4px rgba(120,170,255,0.9)); }
@@ -113,7 +113,7 @@ code { background: var(--bg-2); padding: 2px 7px; border-radius: 6px; font-size:
 .hero-kicker { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px;
   letter-spacing: 0.08em; text-transform: uppercase; color: #bcd2ff;
   background: rgba(255,255,255,0.10); padding: 7px 14px; border-radius: 999px; }
-.hero-title { color: #fff; font-size: clamp(38px, 8vw, 76px); margin: 20px 0 0; }
+.hero-title { color: #fff; font-size: clamp(38px, 8vw, 76px); margin: 20px 0 0; text-shadow: 0 2px 24px rgba(0,0,0,0.6); }
 .hero-title .accent { background: linear-gradient(90deg, #7fb0ff, #c9b6ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero-tagline { color: #e7eefc; font-size: clamp(18px, 3vw, 26px); font-weight: 600; margin-top: 14px;
   letter-spacing: 0.01em; }
@@ -133,7 +133,12 @@ code { background: var(--bg-2); padding: 2px 7px; border-radius: 6px; font-size:
 .stamp-hero { top: clamp(18px, 4vw, 34px); right: clamp(18px, 4vw, 42px); }
 .stamp-top, .stamp-bot { font-size: 8.5px; letter-spacing: 0.18em; }
 .stamp-big { font-size: 40px; font-weight: 700; line-height: 1; margin: 1px 0; }
-@media (max-width: 600px) { .stamp-hero { width: 84px; height: 84px; } .stamp-big { font-size: 28px; } .hero-40 { opacity: 0.7; } }
+@media (max-width: 600px) {
+  .stamp-hero { width: 84px; height: 84px; }
+  .stamp-big { font-size: 28px; }
+  .stamp-top, .stamp-bot { font-size: 5.5px; letter-spacing: 0.04em; }
+  .hero-40 { opacity: 0.7; }
+}
 .countdown { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .cd-tile { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
   padding: 12px 18px; min-width: 78px; text-align: center; backdrop-filter: blur(6px); }
