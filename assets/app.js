@@ -26,7 +26,8 @@ function renderHero(meta) {
   $("#heroTagline").textContent = meta.tagline;
   $("#heroInvite").innerHTML = (meta.invite || meta.blurb).replace(/\n\n/g, "<br><br>");
   if (meta.playful) $("#heroPlayful").textContent = meta.playful;
-  $("#footRange").textContent = meta.tripWindow || meta.dateRange;
+  const footRange = $("#footRange");
+  if (footRange) footRange.textContent = meta.tripWindow || meta.dateRange;
   $("#flightRef").innerHTML = meta.flightRef +
     (meta.flightRefSecret ? ` <span class="flight-ref">· booking ref ${lockedHTML(meta.flightRefSecret)}</span>` : "");
 
