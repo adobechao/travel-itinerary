@@ -34,7 +34,7 @@
   ],
   "destinations": [
     { "name": "Hong Kong", "flag": "🇭🇰", "code": "HKG", "mood": "Big Birthday Celebration", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "why": "If you had to pick one city that is basically Chao in physical form, it's Hong Kong. East meets West, chaos meets order, dim sum at any hour and a skyline that doesn't quit. It's loud, it's alive, and it doesn't apologise for either. So when it came to picking where 17 people from 6 countries would fly halfway across the world to watch one man get old, this was always the answer. No debate needed.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
-    { "name": "Shenzhen", "flag": "🇨🇳", "code": "SZX", "mood": "City of 2050", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "why": "Honestly we just want to go and see some cool stuff. Robots walking the streets, drones in the sky, lights everywhere. Shenzhen is the city of 2050 and we're going to experience it firsthand. Someone might even bring a robot home.", "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70" },
+    { "name": "Shenzhen", "flag": "🇨🇳", "code": "SZX", "mood": "City of 2050", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "why": "Honestly we just want to go and see some cool stuff. Robots walking the streets, drones in the sky, lights everywhere. Shenzhen is the city of 2050 and we're going to experience it firsthand. Someone might even bring a robot home.", "image": "https://images.unsplash.com/photo-1559227657-1835d2db47b6?w=900&q=70" },
     { "name": "Taipei", "flag": "🇹🇼", "code": "TPE", "mood": "Asia's Hidden Gem", "lat": 25.0330, "lng": 121.5654, "order": 3, "blurb": "Night markets, Jiufen, and Taipei Pride to finish.", "why": "Asia's best-kept secret and somehow still underrated. A melting pot where Japanese precision, Chinese soul, and Southeast Asian warmth all collide in the best possible way. Closest to where Chao was born, built around food you'll be dreaming about for weeks, and the kind of chill you simply can't manufacture.", "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70" }
   ],
   "route": [
@@ -105,7 +105,7 @@
       "title": "Hong Kong → Shenzhen",
       "summary": "High-speed rail, border crossing, one night in the future.",
       "hotel": "Futian Shangri-La Shenzhen",
-      "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70",
+      "image": "https://images.unsplash.com/photo-1708053611310-80959cee39cc?w=900&q=70",
       "plans": [
         { "time": "Morning", "plan": "Check out of the Renaissance." },
         { "time": "Afternoon", "plan": "🚄 Train to Shenzhen · explore." },
@@ -141,7 +141,7 @@
       "title": "Taipei: open day",
       "summary": "No agenda. Just Taipei, your feet, and an embarrassing amount of food.",
       "hotel": "Airbnb — Home in Meihua Village",
-      "image": "https://images.unsplash.com/photo-1552993873-9be5e2a6e3b6?w=900&q=70",
+      "image": "https://images.unsplash.com/photo-1654237242457-675d4a9086d0?w=900&q=70",
       "plans": [
         { "time": "Morning", "plan": "Open. Add plans." },
         { "time": "Afternoon", "plan": "Open. Add plans." },
@@ -201,7 +201,7 @@
       "date": "Mon 2 Nov", "city": "Hong Kong → home", "flag": "✈️", "kicker": "Travel home",
       "title": "Hong Kong → Munich → London",
       "summary": "Red-eye home. Until the next one.",
-      "image": "https://images.unsplash.com/photo-1610642372651-fe6e7bc60ba0?w=900&q=70",
+      "image": "https://images.unsplash.com/photo-1777877291532-7ef9960442f3?w=900&q=70",
       "plans": [
         { "time": "Late night", "plan": "✈️ CX301: Hong Kong 1:10am → Munich 7:50am (Business)." },
         { "time": "Morning", "plan": "✈️ TBC. Book Munich → London (same day, after 7:50am)." }
@@ -226,7 +226,7 @@
     { "text": "Uncover TikTok's hidden gems in every city", "emoji": "📱" }
   ],
   "notes": [
-    "The living list: restaurant recs, things we haven't figured out, anything worth adding. Chuck it in.",
+    "This is a living list: will be constantly updated.",
     "⚠️ Book London → Munich and Munich → London connecting flights.",
     "⚠️ Book Hong Kong stay for the night of 26 Oct."
   ]
