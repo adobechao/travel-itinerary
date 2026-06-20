@@ -30,7 +30,12 @@ data/itinerary.json    # <-- SINGLE SOURCE OF TRUTH. Edit this to update the tri
 
 ## Updating the trip
 Almost everything lives in `data/itinerary.json`:
-- `meta` — title, dates, countdown `startDate` (YYYY-MM-DD), blurb, flight ref.
+- `meta` — title, dates, countdown `startDate` (YYYY-MM-DD), blurb, `invite` (warm hero
+  intro copy), `playful` (the one-liner pill), `tripWindow` ("Oct–Nov 2026"), flight ref.
+- `destinations` — each city also carries `code` (HKG/SZX/TPE), `mood` (short label used by
+  the trip arc + "Why these cities?"), and `why` (the city-card paragraph).
+- `fortyThings` — the "Chao's 40 things" mission board items (`{text, emoji}`). Checked state
+  is saved per-visitor in `localStorage` (key `chao40-things`); it isn't shared between people.
 - `crew` — people grouped by country (drives story rings + crew cards).
 - `origins` — where people fly **from** (drives the inbound arcs on the map; lat/lng + colour).
 - `destinations` — Hong Kong / Shenzhen / Taipei (map orbs + order).

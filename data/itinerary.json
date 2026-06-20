@@ -3,6 +3,8 @@
     "title": "Chao turns 40",
     "tagline": "Hong Kong · Shenzhen · Taipei",
     "blurb": "A birthday trip wrapped around Taipei Pride. 17 of us, 6 countries, one ridiculous reason to fly across the world.",
+    "invite": "I'm turning 40, and the best gift is having you there. This trip is part reunion, part food crawl, part city-hopping adventure — Hong Kong, Shenzhen, and Taipei with some of my favourite people.",
+    "playful": "17 friends · 3 cities · 1 very full camera roll",
     "dateRange": "Fri 23 Oct → Sun 1 Nov 2026",
     "tripWindow": "Oct–Nov 2026",
     "startDate": "2026-10-23",
@@ -31,9 +33,9 @@
     { "label": "Taiwan", "country": "Taiwan", "flag": "🇹🇼", "lat": 22.6273, "lng": 120.3014, "color": "#6C5CE7", "to": "Taipei" }
   ],
   "destinations": [
-    { "name": "Hong Kong", "flag": "🇭🇰", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
-    { "name": "Shenzhen", "flag": "🇨🇳", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70" },
-    { "name": "Taipei", "flag": "🇹🇼", "lat": 25.0330, "lng": 121.5654, "order": 3, "blurb": "Night markets, Jiufen, and Taipei Pride to finish.", "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70" }
+    { "name": "Hong Kong", "flag": "🇭🇰", "code": "HKG", "mood": "Arrival energy", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "why": "Arrival energy, skyline views, dim sum, late-night catchups, and the feeling of everyone finally landing in the same place.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
+    { "name": "Shenzhen", "flag": "🇨🇳", "code": "SZX", "mood": "Explore + surprise", "lat": 22.5431, "lng": 114.0579, "order": 2, "blurb": "A quick high-speed-rail hop north for a night.", "why": "A future-facing city stop: design, tech, food, border-crossing adventure, and a slightly unexpected chapter of the trip.", "image": "https://images.unsplash.com/photo-1522850066456-cf6f7b1a35eb?w=900&q=70" },
+    { "name": "Taipei", "flag": "🇹🇼", "code": "TPE", "mood": "Birthday warmth", "lat": 25.0330, "lng": 121.5654, "order": 3, "blurb": "Night markets, Jiufen, and Taipei Pride to finish.", "why": "Night markets, warm hospitality, slower wandering, birthday moments, and a final stretch full of shared memories.", "image": "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=900&q=70" }
   ],
   "route": [
     { "from": "Hong Kong", "to": "Shenzhen", "mode": "rail" },
@@ -203,6 +205,18 @@
         { "time": "Morning", "plan": "✈️ TBC — Book Munich → London (same day, after 7:50am)." }
       ]
     }
+  ],
+  "fortyThings": [
+    { "text": "Eat something questionable but delicious", "emoji": "🍢" },
+    { "text": "Take one excellent group photo", "emoji": "📸" },
+    { "text": "Find the best pineapple cake", "emoji": "🍍" },
+    { "text": "Sing badly", "emoji": "🎤" },
+    { "text": "Toast to old friends", "emoji": "🥂" },
+    { "text": "Make one new tradition", "emoji": "✨" },
+    { "text": "Get lost at least once", "emoji": "🧭" },
+    { "text": "Try a local breakfast in every city", "emoji": "🍳" },
+    { "text": "Capture one perfect skyline photo", "emoji": "🌆" },
+    { "text": "Leave room for a surprise", "emoji": "🎁" }
   ],
   "notes": [
     "Drop restaurant ideas, things to book, and must-dos here so we can all add to them.",

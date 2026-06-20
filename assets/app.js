@@ -24,8 +24,9 @@ function renderHero(meta) {
   $("#heroKicker").textContent = `40th birthday · ${meta.tripWindow || "Oct–Nov 2026"}`;
   $("#heroTitle").innerHTML = `Chao turns <span class="accent">40</span>`;
   $("#heroTagline").textContent = meta.tagline;
-  $("#heroBlurb").textContent = meta.blurb;
-  $("#footRange").textContent = meta.dateRange;
+  $("#heroInvite").textContent = meta.invite || meta.blurb;
+  if (meta.playful) $("#heroPlayful").textContent = meta.playful;
+  $("#footRange").textContent = meta.tripWindow || meta.dateRange;
   $("#flightRef").innerHTML = meta.flightRef +
     (meta.flightRefSecret ? ` <span class="flight-ref">· booking ref ${lockedHTML(meta.flightRefSecret)}</span>` : "");
 
@@ -160,6 +161,84 @@ function renderFlights(flights) {
 function renderNotes(notes) {
   const ul = $("#notesList");
   notes.forEach((n) => ul.appendChild(el("li", "", n)));
+}
+
+/* ---------- why these cities (boarding-pass cards) ---------- */
+function renderCities(destinations) {
+  const grid = $("#citiesGrid");
+  if (!grid) return;
+  destinations.filter((d) => d.why).forEach((d) => {
+    const card = el("article", "city-card");
+    card.innerHTML = `
+      <div class="city-card-head">
+        <div>
+          <div class="city-card-code">${d.code || ""}</div>
+          <h3 class="city-card-name">${d.flag} ${d.name}</h3>
+        </div>
+        <span class="city-card-stamp" aria-hidden="true"><span>STOP ${d.order}</span></span>
+      </div>
+      <div class="city-card-mood">${d.mood || ""}</div>
+      <p class="city-card-why">${d.why}</p>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ---------- visual trip arc ---------- */
+function renderTripArc(data) {
+  const strip = $("#tripArc");
+  if (!strip) return;
+  const cities = [...data.destinations].sort((a, b) => a.order - b.order);
+  const stops = [
+    { kind: "home", code: "HOME", name: "Home cities", mood: "Everyone sets off" },
+    ...cities.map((c) => ({ kind: "city", code: c.code, name: c.name, flag: c.flag, mood: c.mood })),
+    { kind: "home", code: "HOME", name: "Home again", mood: "Until the next one" },
+  ];
+  stops.forEach((s, i) => {
+    const node = el("div", "arc-node" + (s.kind === "home" ? " is-home" : ""));
+    node.innerHTML = `
+      <div class="arc-dot"><span>${s.kind === "home" ? "✈" : s.flag || ""}</span></div>
+      <div class="arc-code">${s.code}</div>
+      <div class="arc-name">${s.name}</div>
+      <div class="arc-mood">${s.mood}</div>`;
+    strip.appendChild(node);
+    if (i < stops.length - 1) strip.appendChild(el("div", "arc-link", "<span></span>"));
+  });
+}
+
+/* ---------- Chao's 40 things (interactive mission board) ---------- */
+function renderForty(items) {
+  const board = $("#fortyBoard");
+  const progress = $("#fortyProgress");
+  if (!board) return;
+  const KEY = "chao40-things";
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (_) { done = {}; }
+
+  const updateProgress = () => {
+    const count = items.filter((_, i) => done[i]).length;
+    progress.textContent = `${count} of ${items.length} done`;
+  };
+
+  items.forEach((item, i) => {
+    const id = `mission-${i}`;
+    const label = el("label", "mission");
+    label.setAttribute("for", id);
+    label.innerHTML = `
+      <input type="checkbox" id="${id}" class="mission-check" ${done[i] ? "checked" : ""} />
+      <span class="mission-emoji" aria-hidden="true">${item.emoji || "✦"}</span>
+      <span class="mission-text">${item.text}</span>
+      <span class="mission-stamp" aria-hidden="true">done</span>`;
+    const input = label.querySelector("input");
+    label.classList.toggle("is-done", !!done[i]);
+    input.addEventListener("change", () => {
+      done[i] = input.checked;
+      label.classList.toggle("is-done", input.checked);
+      try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (_) {}
+      updateProgress();
+    });
+    board.appendChild(label);
+  });
+  updateProgress();
 }
 
 /* ---------- map ---------- */
@@ -411,12 +490,15 @@ function initNav() {
   try {
     const data = await loadData();
     renderHero(data.meta);
+    renderTripArc(data);
+    renderCities(data.destinations);
     renderCrew(data.crew);
     renderHeroMap(data);
     renderMap(data);
     renderDays(data.days);
     renderStays(data.stays);
     renderFlights(data.flights);
+    renderForty(data.fortyThings || []);
     renderNotes(data.notes);
   } catch (e) {
     console.error(e);
