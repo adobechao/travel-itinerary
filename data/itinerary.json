@@ -2,29 +2,33 @@
   "meta": {
     "title": "Chao turns 40",
     "tagline": "Hong Kong · Shenzhen · Taipei",
-    "blurb": "A birthday trip wrapped around Taipei Pride. 16 of us, 5 countries, one ridiculous reason to fly across the world.",
+    "blurb": "A birthday trip wrapped around Taipei Pride. 17 of us, 6 countries, one ridiculous reason to fly across the world.",
     "dateRange": "Fri 23 Oct → Sun 1 Nov 2026",
+    "tripWindow": "Oct–Nov 2026",
     "startDate": "2026-10-23",
     "endDate": "2026-11-01",
     "birthdayDate": "2026-10-24",
-    "travelers": 16,
-    "countries": 5,
+    "travelers": 17,
+    "countries": 6,
     "nights": 9,
-    "flightRef": "Cathay Pacific · Business class"
+    "flightRef": "Cathay Pacific · Business class",
+    "flightRefSecret": "cathay_ref"
   },
   "crew": [
     { "country": "United Kingdom", "flag": "🇬🇧", "code": "UK", "people": ["Chao", "Brendan", "Dave", "Ryan", "Chris", "Tano"] },
     { "country": "Australia", "flag": "🇦🇺", "code": "AUS", "people": ["Karl", "Trevor", "Rohan", "Rebecca"] },
     { "country": "Singapore", "flag": "🇸🇬", "code": "SG", "people": ["Jason", "Lynette", "Glenn"] },
     { "country": "United States", "flag": "🇺🇸", "code": "US", "people": ["Tom", "Jerry"] },
-    { "country": "China", "flag": "🇨🇳", "code": "CN", "people": ["Ryan"] }
+    { "country": "China", "flag": "🇨🇳", "code": "CN", "people": ["Ryan"] },
+    { "country": "Taiwan", "flag": "🇹🇼", "code": "TW", "people": ["Allen"] }
   ],
   "origins": [
     { "label": "London", "country": "UK", "flag": "🇬🇧", "lat": 51.5074, "lng": -0.1278, "color": "#E84393" },
     { "label": "Sydney", "country": "Australia", "flag": "🇦🇺", "lat": -33.8688, "lng": 151.2093, "color": "#00B894" },
     { "label": "Singapore", "country": "Singapore", "flag": "🇸🇬", "lat": 1.3521, "lng": 103.8198, "color": "#0984E3" },
     { "label": "United States", "country": "USA", "flag": "🇺🇸", "lat": 37.7749, "lng": -122.4194, "color": "#E17055" },
-    { "label": "China", "country": "China", "flag": "🇨🇳", "lat": 23.1291, "lng": 113.2644, "color": "#FDCB6E" }
+    { "label": "China", "country": "China", "flag": "🇨🇳", "lat": 23.1291, "lng": 113.2644, "color": "#FDCB6E" },
+    { "label": "Taiwan", "country": "Taiwan", "flag": "🇹🇼", "lat": 22.6273, "lng": 120.3014, "color": "#6C5CE7", "to": "Taipei" }
   ],
   "destinations": [
     { "name": "Hong Kong", "flag": "🇭🇰", "lat": 22.3193, "lng": 114.1694, "order": 1, "blurb": "Where the whole crew lands and the birthday kicks off.", "image": "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=70" },
@@ -36,11 +40,17 @@
     { "from": "Shenzhen", "to": "Hong Kong", "mode": "rail" },
     { "from": "Hong Kong", "to": "Taipei", "mode": "air" }
   ],
+  "activities": [
+    { "label": "Birthday day", "emoji": "🎂", "lat": 22.3193, "lng": 114.1694, "type": "birthday", "note": "Sat 24 Oct · Hong Kong" },
+    { "label": "Shenzhen", "emoji": "🚄", "lat": 22.5431, "lng": 114.0579, "type": "activity", "note": "High-speed rail trip" },
+    { "label": "Jiufen", "emoji": "🏮", "lat": 25.1094, "lng": 121.8447, "type": "activity", "note": "Ghibli-town day trip" },
+    { "label": "Taipei Pride", "emoji": "🏳️‍🌈", "lat": 25.0330, "lng": 121.5654, "type": "pride", "note": "Sat 31 Oct · the finale" }
+  ],
   "stays": [
     { "name": "Renaissance Hong Kong Harbour View Hotel", "city": "Hong Kong", "flag": "🇭🇰", "dates": "23–25 Oct", "status": "booked" },
     { "name": "Futian Shangri-La Shenzhen", "city": "Shenzhen", "flag": "🇨🇳", "dates": "25 Oct (1 night)", "status": "booked" },
     { "name": "Hong Kong stay", "city": "Hong Kong", "flag": "🇭🇰", "dates": "26 Oct (1 night)", "status": "tbc" },
-    { "name": "Airbnb — Home in Meihua Village", "city": "Taipei", "flag": "🇹🇼", "dates": "27 Oct – 1 Nov", "status": "booked", "detail": "Host: WuWu · Meihua Village, Taipei · 5-min walk to Shandao Temple MRT · keypad self check-in · checkout Sun 1 Nov 11:00" }
+    { "name": "Airbnb — Home in Meihua Village", "city": "Taipei", "flag": "🇹🇼", "dates": "27 Oct – 1 Nov", "status": "booked", "detail": "Host: WuWu · Meihua Village, Taipei · 5-min walk to Shandao Temple MRT · keypad self check-in · checkout Sun 1 Nov 11:00", "locked": [ { "label": "Full address", "secret": "airbnb_address" }, { "label": "Confirmation code", "secret": "airbnb_confirmation" } ] }
   ],
   "flights": [
     { "code": "TBC", "date": "Thu 22 Oct", "from": "London", "to": "Munich (MUC)", "note": "To book — connects to CX300", "status": "tbc" },

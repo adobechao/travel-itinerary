@@ -14,14 +14,20 @@ async function loadData() {
   return res.json();
 }
 
+/* a masked, clickable placeholder for an encrypted value */
+function lockedHTML(secret, mask) {
+  return `<button class="locked" data-secret="${secret}"><span class="lk">🔒</span>${mask || "••••••"}</button>`;
+}
+
 /* ---------- hero + countdown ---------- */
 function renderHero(meta) {
-  $("#heroKicker").textContent = `40th birthday · ${meta.dateRange.split("→")[1].trim()}`;
+  $("#heroKicker").textContent = `40th birthday · ${meta.tripWindow || "Oct–Nov 2026"}`;
   $("#heroTitle").innerHTML = `Chao turns <span class="accent">40</span>`;
   $("#heroTagline").textContent = meta.tagline;
   $("#heroBlurb").textContent = meta.blurb;
   $("#footRange").textContent = meta.dateRange;
-  $("#flightRef").textContent = meta.flightRef;
+  $("#flightRef").innerHTML = meta.flightRef +
+    (meta.flightRefSecret ? ` <span class="flight-ref">· booking ref ${lockedHTML(meta.flightRefSecret)}</span>` : "");
 
   const chips = [
     { em: "📅", t: meta.dateRange },
@@ -130,7 +136,8 @@ function renderStays(stays) {
         <span class="tag ${s.status}" style="margin-left:auto">${s.status === "booked" ? "Booked" : "TBC"}</span></div>
       <div class="stay-name">${s.name}</div>
       <div class="stay-dates">${s.dates}</div>
-      ${s.detail ? `<div class="stay-detail">${s.detail}</div>` : ""}`;
+      ${s.detail ? `<div class="stay-detail">${s.detail}</div>` : ""}
+      ${(s.locked || []).map((l) => `<div class="secret-row"><span class="sk">${l.label}:</span> ${lockedHTML(l.secret)}</div>`).join("")}`;
     grid.appendChild(card);
   });
 }
@@ -193,12 +200,13 @@ function renderMap(data) {
 
   const all = [];
 
-  // inbound flight arcs to Hong Kong
+  // inbound flight arcs (everyone to Hong Kong, except those joining elsewhere)
   data.origins.forEach((o) => {
-    const pts = arcPoints([o.lat, o.lng], [HK.lat, HK.lng], 0.18);
+    const hub = o.to ? data.destinations.find((d) => d.name === o.to) || HK : HK;
+    const pts = arcPoints([o.lat, o.lng], [hub.lat, hub.lng], 0.18);
     L.polyline(pts, { color: o.color, weight: 2, opacity: 0.75, dashArray: "1 8", lineCap: "round" }).addTo(map);
     L.marker([o.lat, o.lng], { icon: originIcon(o.flag) })
-      .bindPopup(`<b>${o.flag} ${o.label}</b><br>flying in to Hong Kong`).addTo(map);
+      .bindPopup(`<b>${o.flag} ${o.label}</b><br>joining in ${hub.name}`).addTo(map);
     all.push([o.lat, o.lng]);
   });
 
@@ -223,6 +231,169 @@ function renderMap(data) {
   setTimeout(() => map.invalidateSize(), 200);
 }
 
+/* ---------- animated hero world map ---------- */
+const PLANE = "M0,-8 L2.2,-2.4 L8,1.2 L2.2,2.2 L1.2,6 L3.2,8 L0,6.8 L-3.2,8 L-1.2,6 L-2.2,2.2 L-8,1.2 L-2.2,-2.4 Z";
+let heroRAF = null, heroResizeTimer = null;
+
+async function renderHeroMap(data) {
+  const host = document.getElementById("heroMap");
+  if (!host || typeof d3 === "undefined" || typeof topojson === "undefined") return;
+
+  let world;
+  try {
+    world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json");
+  } catch (e) { console.warn("hero map: world atlas unavailable", e); return; }
+  const land = topojson.feature(world, world.objects.land);
+
+  const HK = data.destinations.find((d) => d.name === "Hong Kong");
+  const draw = () => {
+    if (heroRAF) cancelAnimationFrame(heroRAF);
+    host.innerHTML = "";
+    const W = host.clientWidth || 900;
+    const H = host.clientHeight || 520;
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid slice");
+
+    const projection = d3.geoNaturalEarth1().rotate([-150, -8]);
+    projection.fitExtent([[-W * 0.06, -H * 0.18], [W * 1.06, H * 1.22]], { type: "Sphere" });
+    const path = d3.geoPath(projection);
+
+    svg.append("path").datum({ type: "Sphere" }).attr("class", "hm-grat").attr("d", path);
+    svg.append("path").datum(d3.geoGraticule10()).attr("class", "hm-grat").attr("d", path);
+    svg.append("path").datum(land).attr("class", "hm-land").attr("d", path);
+
+    // helper: great-circle line feature between [lng,lat] points
+    const gc = (a, b) => {
+      const interp = d3.geoInterpolate(a, b);
+      const coords = d3.range(0, 1.0001, 1 / 64).map((t) => interp(t));
+      return { type: "LineString", coordinates: coords };
+    };
+
+    const flights = [];
+    data.origins.forEach((o, i) => {
+      const dest = o.to ? data.destinations.find((d) => d.name === o.to) || HK : HK;
+      const a = [o.lng, o.lat], b = [dest.lng, dest.lat];
+      const arc = svg.append("path").datum(gc(a, b)).attr("class", "hm-arc")
+        .attr("stroke", o.color).attr("stroke-width", 1.6).attr("d", path);
+      const node = arc.node();
+      const len = node.getTotalLength();
+      arc.attr("stroke-dasharray", len).attr("stroke-dashoffset", len);
+      const plane = svg.append("path").attr("class", "hm-plane").attr("d", PLANE).attr("opacity", 0);
+      // origin flag
+      const p0 = projection(a);
+      if (p0) svg.append("text").attr("x", p0[0]).attr("y", p0[1] + 4).attr("text-anchor", "middle")
+        .attr("font-size", 13).text(o.flag);
+      flights.push({ node, len, plane, delay: i * 900, dur: 4200, gap: 2600 });
+    });
+
+    // hub + activity pulses
+    const pulse = (lng, lat, color, r, label, emoji) => {
+      const p = projection([lng, lat]); if (!p) return;
+      const g = svg.append("g").attr("transform", `translate(${p[0]},${p[1]})`);
+      const ring = g.append("circle").attr("class", "hm-pulse").attr("r", r).attr("stroke", color).attr("stroke-width", 1.6).attr("fill", "none");
+      ring.append("animate").attr("attributeName", "r").attr("values", `${r};${r * 3.4}`).attr("dur", "2.4s").attr("repeatCount", "indefinite");
+      ring.append("animate").attr("attributeName", "opacity").attr("values", "0.9;0").attr("dur", "2.4s").attr("repeatCount", "indefinite");
+      g.append("circle").attr("r", 2.6).attr("fill", color);
+      if (emoji) g.append("text").attr("y", -8).attr("text-anchor", "middle").attr("font-size", 14).text(emoji);
+    };
+    (data.activities || []).forEach((a) => {
+      const color = a.type === "birthday" ? "#ffd166" : a.type === "pride" ? "#ff5e8a" : "#7fb0ff";
+      pulse(a.lng, a.lat, color, 4, a.label, a.emoji);
+    });
+
+    // animate planes along arcs
+    const start = performance.now();
+    const frame = (now) => {
+      flights.forEach((f) => {
+        const cycle = f.dur + f.gap;
+        let local = (now - start - f.delay) % cycle;
+        if (local < 0) local += cycle;
+        if (local <= f.dur) {
+          const p = local / f.dur;
+          const at = f.node.getPointAtLength(p * f.len);
+          const ahead = f.node.getPointAtLength(Math.min(f.len, p * f.len + 1));
+          const ang = (Math.atan2(ahead.y - at.y, ahead.x - at.x) * 180) / Math.PI + 90;
+          f.plane.attr("opacity", 1).attr("transform", `translate(${at.x},${at.y}) rotate(${ang}) scale(0.95)`);
+          f.node.setAttribute("stroke-dashoffset", f.len * (1 - p));
+        } else {
+          f.plane.attr("opacity", 0);
+          f.node.setAttribute("stroke-dashoffset", 0);
+        }
+      });
+      heroRAF = requestAnimationFrame(frame);
+    };
+    heroRAF = requestAnimationFrame(frame);
+  };
+
+  draw();
+  window.addEventListener("resize", () => {
+    clearTimeout(heroResizeTimer);
+    heroResizeTimer = setTimeout(draw, 250);
+  });
+}
+
+/* ---------- secure reveal (client-side AES-GCM) ---------- */
+const Secrets = {
+  enc: null, revealed: null,
+  b64: (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0)),
+  async load() {
+    if (this.enc) return this.enc;
+    const r = await fetch("data/secrets.enc.json", { cache: "no-store" });
+    this.enc = await r.json();
+    return this.enc;
+  },
+  async unlock(password) {
+    const enc = await this.load();
+    const e = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey("raw", e.encode(password), "PBKDF2", false, ["deriveKey"]);
+    const key = await crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt: this.b64(enc.salt), iterations: enc.iter, hash: "SHA-256" },
+      baseKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
+    );
+    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: this.b64(enc.iv) }, key, this.b64(enc.data));
+    this.revealed = JSON.parse(new TextDecoder().decode(pt));
+    return this.revealed;
+  },
+};
+
+function applyRevealed(values) {
+  document.querySelectorAll("[data-secret]").forEach((el) => {
+    const v = values[el.dataset.secret];
+    if (v == null) return;
+    const span = document.createElement("span");
+    span.className = "unlocked";
+    span.textContent = v;
+    el.replaceWith(span);
+  });
+}
+
+function initUnlock() {
+  const modal = $("#lockModal"), form = $("#lockForm"), input = $("#lockInput"),
+    err = $("#lockError"), close = $("#lockClose");
+  const open = () => { modal.hidden = false; err.hidden = true; input.value = ""; setTimeout(() => input.focus(), 30); };
+  const shut = () => { modal.hidden = true; };
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".locked");
+    if (btn) { e.preventDefault(); open(); }
+  });
+  close.addEventListener("click", shut);
+  modal.addEventListener("click", (e) => { if (e.target === modal) shut(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) shut(); });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    err.hidden = true;
+    try {
+      const values = await Secrets.unlock(input.value.trim());
+      applyRevealed(values);
+      shut();
+    } catch (_) {
+      err.hidden = false;
+      input.select();
+    }
+  });
+}
+
 /* ---------- nav ---------- */
 function initNav() {
   const nav = $("#nav");
@@ -236,10 +407,12 @@ function initNav() {
 /* ---------- boot ---------- */
 (async function () {
   initNav();
+  initUnlock();
   try {
     const data = await loadData();
     renderHero(data.meta);
     renderCrew(data.crew);
+    renderHeroMap(data);
     renderMap(data);
     renderDays(data.days);
     renderStays(data.stays);

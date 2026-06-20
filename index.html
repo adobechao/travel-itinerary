@@ -33,9 +33,10 @@
 
   <main id="top">
     <section class="hero" id="hero">
-      <div class="hero-glow"></div>
+      <div class="hero-map" id="heroMap" aria-hidden="true"></div>
+      <div class="hero-scrim"></div>
       <div class="hero-inner">
-        <div class="hero-kicker" id="heroKicker">40th birthday · Oct 2026</div>
+        <div class="hero-kicker" id="heroKicker">40th birthday · Oct–Nov 2026</div>
         <h1 class="hero-title" id="heroTitle"></h1>
         <p class="hero-tagline" id="heroTagline"></p>
         <p class="hero-blurb" id="heroBlurb"></p>
@@ -47,7 +48,7 @@
     <section class="section" id="crew">
       <div class="section-head">
         <h2>The crew</h2>
-        <p class="muted" id="crewSub">Sixteen of us, five countries, one group chat that never sleeps.</p>
+        <p class="muted" id="crewSub">Seventeen of us, six countries, one group chat that never sleeps.</p>
       </div>
       <div class="stories" id="stories"></div>
       <div class="crew-grid" id="crewGrid"></div>
@@ -99,7 +100,23 @@
     <p class="muted small">Edit <code>data/itinerary.json</code> to update this page.</p>
   </footer>
 
+  <div class="modal-backdrop" id="lockModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+      <button class="modal-close" id="lockClose" aria-label="Close">✕</button>
+      <div class="lock-icon">🔒</div>
+      <h3 id="lockTitle">Crew access only</h3>
+      <p class="muted small">Enter the password to reveal booking codes &amp; the address. These are encrypted — they aren't in the page source.</p>
+      <form id="lockForm" autocomplete="off">
+        <input type="password" id="lockInput" placeholder="Password" aria-label="Password" autocomplete="off" />
+        <button type="submit" id="lockSubmit">Unlock</button>
+      </form>
+      <p class="lock-error" id="lockError" hidden>Wrong password — try again.</p>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

@@ -10,7 +10,9 @@ This file is the running brief — start here whenever you come back to update t
 - A static site (HTML + CSS + vanilla JS) — no build step, deploys straight to GitHub Pages.
 - Design direction: **light, glossy, social-feed inspired** (Instagram/TikTok energy) with an
   **interactive map**. Inspired by a travel-app showreel the owner shared.
-- Sections: hero + live countdown, the crew (story rings by country), interactive map
+- Sections: **animated hero** (D3 world-map flight animation — planes flying in from each crew
+  city to Hong Kong/Taipei, with pulsing birthday/activity pins) + live countdown, the crew
+  (story rings by country), interactive map
   (everyone flying in to Hong Kong → route to Shenzhen → Taipei), day-by-day itinerary feed,
   stays, flights, and shared notes.
 
@@ -39,6 +41,41 @@ Almost everything lives in `data/itinerary.json`:
 - `stays`, `flights`, `notes`.
 
 After editing, commit + push to `main` — GitHub Pages redeploys automatically.
+
+## Secure (password-gated) fields
+Sensitive booking details (Cathay ref, Airbnb confirmation code + full address) are **encrypted**,
+not just hidden. They render as masked `🔒 ••••••` buttons; clicking one opens a password prompt,
+and the values decrypt **in the browser** only with the correct password (currently `chao86`).
+
+- The plaintext is **never** in the repo, HTML, or JS — only the ciphertext in `data/secrets.enc.json`.
+- Crypto: PBKDF2-SHA256 (250k iterations) → AES-GCM-256. A wrong password fails the GCM auth tag.
+- This is client-side gating: strong enough to keep codes out of the page source and casual view,
+  but the password is shared with the crew — treat it as "friends-only", not bank-grade.
+
+**To change the password or the secret values**, re-run the one-off generator (kept OUT of the repo
+so plaintext never lands in git). Create `/tmp/gen-secrets.mjs`:
+```js
+import { webcrypto as crypto } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+const PASSWORD = 'chao86';                 // <- change me
+const ITER = 250000;
+const payload = {                          // <- edit values; keys must match data-secret keys in the JSON
+  cathay_ref: 'FRQPNF',
+  airbnb_confirmation: 'HMHYCZ2R48',
+  airbnb_address: 'No. 27, Section 2, Zhongxiao East Road 3, Meihua Village, Taipei 100, Taiwan'
+};
+const enc = new TextEncoder();
+const salt = crypto.getRandomValues(new Uint8Array(16));
+const iv = crypto.getRandomValues(new Uint8Array(12));
+const bk = await crypto.subtle.importKey('raw', enc.encode(PASSWORD), 'PBKDF2', false, ['deriveKey']);
+const key = await crypto.subtle.deriveKey({ name:'PBKDF2', salt, iterations:ITER, hash:'SHA-256' }, bk, { name:'AES-GCM', length:256 }, false, ['encrypt']);
+const ct = await crypto.subtle.encrypt({ name:'AES-GCM', iv }, key, enc.encode(JSON.stringify(payload)));
+const b64 = (u8) => Buffer.from(u8).toString('base64');
+writeFileSync('data/secrets.enc.json', JSON.stringify({ v:1, alg:'AES-GCM', kdf:'PBKDF2-SHA256', iter:ITER, salt:b64(salt), iv:b64(iv), data:Buffer.from(ct).toString('base64') }, null, 2) + '\n');
+```
+Then: `cd travel-itinerary && node /tmp/gen-secrets.mjs && rm /tmp/gen-secrets.mjs` and commit `data/secrets.enc.json`.
+To add a new locked field: add a key to `payload`, regenerate, then reference it in `itinerary.json`
+(e.g. a stay's `locked: [{ "label": "...", "secret": "your_key" }]`).
 
 ## Source of truth for the itinerary
 Originally lived in Notion: <https://silent-quicksand-be3.notion.site/Hong-Kong-Shenzhen-Taipei-Trip-2dd767049119800c977fc6740c4ce826>
