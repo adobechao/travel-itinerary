@@ -349,7 +349,7 @@ async function renderHeroMap(data) {
     const projection = d3.geoNaturalEarth1().rotate([-114, -22]);
     projection
       .scale(isMobile ? Math.min(W, H) * 0.26 : Math.min(W, H) * 0.29)
-      .translate([isMobile ? W * 0.78 : W * 0.78, isMobile ? H * 0.60 : H * 0.58]);
+      .translate([isMobile ? W * 0.78 : W * 0.78, isMobile ? H * 0.625 : H * 0.605]);
     const path = d3.geoPath(projection);
 
     svg.append("path").datum({ type: "Sphere" }).attr("class", "hm-grat").attr("d", path);
